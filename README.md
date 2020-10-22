@@ -1,4 +1,4 @@
-# Lab6_ParallelHoughTransform
+# Lab6: Road Detection
 
 ## Copyright
 
