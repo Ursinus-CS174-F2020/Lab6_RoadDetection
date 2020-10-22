@@ -57,7 +57,7 @@ public class Hough {
     }
 
     /**
-     * Compute the edges using the parameters specified in the constructor
+     * Draw the edges using the parameters specified in the constructor
      */
     public void getEdges() {
         int M = image.grad.length;
