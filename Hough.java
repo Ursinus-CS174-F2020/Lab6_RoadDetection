@@ -9,9 +9,23 @@ import java.util.Arrays;
 
 public class Hough {
     private EdgeImage image;
+    private int NAngles;
+    private int NRad;
+    private float thresh;
 
-    public Hough(EdgeImage image) {
+    /**
+     * Initialize a hough transform for lines
+     * @param image The edge image to do this on
+     * @param NAngles Number of angles to sweep from 0 to 2PI at each offset
+     * @param NRad number of offsets
+     * @param thresh Threshold over which to consider an edge to have enough 
+     *               energy to draw
+     */
+    public Hough(EdgeImage image, int NAngles, int NRad, float thresh) {
         this.image = image;
+        this.NAngles = NAngles;
+        this.NRad = NRad;
+        this.thresh = thresh;
     }
 
     /**
@@ -43,9 +57,9 @@ public class Hough {
     }
 
     /**
-     * 
+     * Compute the edges using the parameters specified in the constructor
      */
-    public void getEdges(int NAngles, int NRad, float thresh) {
+    public void getEdges() {
         int M = image.grad.length;
         int N = image.grad[0].length;
         for (int a = 0; a < NAngles; a++) {
@@ -90,7 +104,7 @@ public class Hough {
         // Step 2: Nonmax suppression
         im.nonmaxSuppression();
         // Step 3: Get edges
-        Hough h = new Hough(im);
-        h.getEdges(4000, 1000, thresh);
+        Hough h = new Hough(im, 4000, 1000, thresh);
+        h.getEdges();
     }
 }
